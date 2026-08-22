@@ -8,8 +8,8 @@ public class PedidoExpress extends Pedido{
 
     public PedidoExpress(){
     }
-    public PedidoExpress(int idPedido, String direccionEntrega, String tipoDePedido, String productoPedido, String comercioAsignado) {
-        super(idPedido, direccionEntrega, tipoDePedido);
+    public PedidoExpress(int idPedido, String direccionEntrega, String tipoDePedido, String productoPedido, String comercioAsignado, double distanciaKm) {
+        super(idPedido, direccionEntrega, tipoDePedido, distanciaKm);
         this.productoPedido = productoPedido;
         this.comercioAsignado = comercioAsignado;
     }
@@ -28,16 +28,31 @@ public class PedidoExpress extends Pedido{
     //Sobrescritura del método
     @Override
     public void asignarRepartidor(){
-        System.out.println("El pedido Express " + idPedido + " ha sido asignado exitosamente");
+        System.out.println("El pedido Express " + getIdPedido() + " ha sido asignado exitosamente");
     }
     //Sobrecarga del método
     public void asignarRepartidor(String nombreRepartidor, int metrosDeCercania){
-        System.out.println("El pedido express " + idPedido + " ha sido asignado al repartidor " + nombreRepartidor
+        System.out.println("El pedido express " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor
                 + " ya que su cercanía de " + metrosDeCercania + " mts permite hacer una entrega más rápida.");
     }
     @Override
+    public void mostrarResumen(){
+        System.out.println("ID Pedido: " + getIdPedido() + " | Direccion de entrega: " + getDireccionEntrega() + " | Tipo de pedido: "
+                + getTipoDePedido() + " | Lista pedido: " + productoPedido + " | Comercio asignado: " + comercioAsignado + " | Distancia: " + getDistanciaKm() + " KM.");
+    }
+
+    @Override
+    public void calcularTiempoEntrega(){
+        double tiempoEntrega = 10;
+        if (getDistanciaKm() > 5){
+            tiempoEntrega += 5;
+        }
+        System.out.println("El tiempo de entrega del pedido es de: " + tiempoEntrega);
+    }
+
+    @Override
     public String toString() {
-        return "ID Pedido: " + idPedido + " | Direccion de entrega: " + direccionEntrega + " | Tipo de pedido: "
-                + tipoDePedido + " | Lista pedido: " + productoPedido + " | Comercio asignado: " + comercioAsignado;
+        return "ID Pedido: " + getIdPedido() + " | Direccion de entrega: " + getDireccionEntrega() + " | Tipo de pedido: "
+                + getTipoDePedido() + " | Lista pedido: " + productoPedido + " | Comercio asignado: " + comercioAsignado;
     }
 }
