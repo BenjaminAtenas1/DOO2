@@ -5,6 +5,7 @@ public abstract class Pedido {
     private String direccionEntrega;
     private String tipoDePedido;
     private double distanciaKm;
+    private String nombreRepartidor;
 
     public Pedido(){
     }
@@ -37,6 +38,12 @@ public abstract class Pedido {
     }
     public void setDistanciaKm(double distanciaKm){
         this.distanciaKm = distanciaKm;
+    }
+    public String getNombreRepartidor() {
+        return nombreRepartidor;
+    }
+    public void setNombreRepartidor(String nombreRepartidor) {
+        this.nombreRepartidor = nombreRepartidor;
     }
     public void asignarRepartidor(){
         System.out.println("Se ha asignado al repartidor para el pedido " +idPedido);

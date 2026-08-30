@@ -46,9 +46,9 @@ public class PedidoEncomienda extends Pedido{
     }
 
     //Sobrecarga del método
-    public void asignarRepartidor(String nombreRepartidor, String vehiculo){
-        System.out.println("La encomienda " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor
-                + " ya que su " + vehiculo + " permite transportar encomiendas.");
+    public void asignarRepartidor(String nombreRepartidor){
+        setNombreRepartidor(nombreRepartidor);
+        System.out.println("La encomienda " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor);
     }
 
     @Override

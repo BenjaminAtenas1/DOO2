@@ -29,9 +29,9 @@ public class PedidoComida extends Pedido{
         System.out.println("El pedido de " + tipoDePedido + " con ID " + getIdPedido() + " ha sido asignado exitosamente");
     }
     //Sobrecarga del método
-    public void asignarRepartidor(String nombreRepartidor, String tipoDeMochila){
-        System.out.println("El pedido de comida " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor
-                + " ya que su tipo de mochila es " + tipoDeMochila);
+    public void asignarRepartidor(String nombreRepartidor){
+        setNombreRepartidor(nombreRepartidor);
+        System.out.println("El pedido de comida " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor);
     }
 
     @Override

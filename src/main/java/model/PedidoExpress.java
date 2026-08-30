@@ -31,9 +31,9 @@ public class PedidoExpress extends Pedido{
         System.out.println("El pedido Express " + getIdPedido() + " ha sido asignado exitosamente");
     }
     //Sobrecarga del método
-    public void asignarRepartidor(String nombreRepartidor, int metrosDeCercania){
-        System.out.println("El pedido express " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor
-                + " ya que su cercanía de " + metrosDeCercania + " mts permite hacer una entrega más rápida.");
+    public void asignarRepartidor(String nombreRepartidor){
+        setNombreRepartidor(nombreRepartidor);
+        System.out.println("El pedido express " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor);
     }
     @Override
     public void mostrarResumen(){
