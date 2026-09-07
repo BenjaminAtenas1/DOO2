@@ -119,8 +119,6 @@ public class Main {
         listaRepartidor2.add(pedidoExpress2);
         Repartidor repartidor3 = new Repartidor("Monchito", listaRepartidor3);
 
-
-
         executor.submit(repartidor1);
         executor.submit(repartidor2);
         executor.submit(repartidor3);
