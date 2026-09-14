@@ -1,5 +1,7 @@
 package model;
 
+import interfaces.EstadoPedido;
+
 import java.util.ArrayList;
 
 public class PedidoExpress extends Pedido{
@@ -8,10 +10,10 @@ public class PedidoExpress extends Pedido{
 
     public PedidoExpress(){
     }
-    public PedidoExpress(int idPedido, String direccionEntrega, String tipoDePedido, String productoPedido, String comercioAsignado, double distanciaKm) {
-        super(idPedido, direccionEntrega, tipoDePedido, distanciaKm);
-        this.productoPedido = productoPedido;
-        this.comercioAsignado = comercioAsignado;
+    public PedidoExpress(int idPedido, String direccionEntrega) {
+        super(idPedido, direccionEntrega);
+        //this.productoPedido = productoPedido;
+        //this.comercioAsignado = comercioAsignado;
     }
     public String getListaPedido() {
         return productoPedido;
@@ -30,7 +32,7 @@ public class PedidoExpress extends Pedido{
     public void asignarRepartidor(){
         System.out.println("El pedido Express " + getIdPedido() + " ha sido asignado exitosamente");
     }
-    //Sobrecarga del método
+    /*
     public void asignarRepartidor(String nombreRepartidor){
         setNombreRepartidor(nombreRepartidor);
         System.out.println("El pedido express " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor);
@@ -49,10 +51,12 @@ public class PedidoExpress extends Pedido{
         }
         System.out.println("El tiempo de entrega del pedido es de: " + tiempoEntrega);
     }
-
+    */
     @Override
     public String toString() {
         return "ID Pedido: " + getIdPedido() + " | Direccion de entrega: " + getDireccionEntrega() + " | Tipo de pedido: "
-                + getTipoDePedido() + " | Lista pedido: " + productoPedido + " | Comercio asignado: " + comercioAsignado;
+                 + " | Lista pedido: " + productoPedido + " | Comercio asignado: " + comercioAsignado;
     }
+
+
 }

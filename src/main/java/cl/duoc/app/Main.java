@@ -2,6 +2,7 @@ package cl.duoc.app;
 
 
 import gestores.ControladorDeEnvios;
+import gestores.ZonaDeCarga;
 import model.*;
 
 import java.util.ArrayList;
@@ -14,59 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     public static void main(String[] args) {
 
-        ControladorDeEnvios controlador1 = new ControladorDeEnvios(); //Añadido en tarea semana 3
-
-        Pedido pedidoEncomienda = new PedidoEncomienda(415263, "Pajaritos 2132, maipu",
-                "Entrega encomienda", "Ropa", 30, 30, 40, 4.5);
-        Pedido pedidoComida = new PedidoComida(748596, "Los arboles 6544, pudahuel",
-                "Entra de comida", "Hamburguesa", true, 30);
-        Pedido pedidoExpress = new PedidoExpress(987654, "Los perros 857485, santiago",
-                "Entrega express", "tomates", "Supermercado Lider", 6);
-
-        //Metodo de sobrescritura encomienda
-        pedidoEncomienda.asignarRepartidor();
-        //Metodo de sobrecarga encomienda
-        ((PedidoEncomienda) pedidoEncomienda).asignarRepartidor("Juanito perez");
-
-        System.out.println("\n");
-
-        //Metodo de sobrescritura pedido comida
-        pedidoComida.asignarRepartidor();
-        //Metodo de sobrecarga pedido de comida
-        ((PedidoComida) pedidoComida).asignarRepartidor("Pedrito");
-
-        System.out.println("\n");
-
-        //Metodo de sobrescritura pedido express
-        pedidoExpress.asignarRepartidor();
-        //MEtodo de sobrecarga pedido express
-        ((PedidoExpress) pedidoExpress).asignarRepartidor("John cena");
-
-        //Acá comienza lo aprendido en la semana 2
-
-        /*System.out.println("\n..::Pedido de Encomienda::..");
-        pedidoEncomienda.mostrarResumen();
-        pedidoEncomienda.calcularTiempoEntrega();
-
-        System.out.println("\n..::Pedido de comida::..");
-        pedidoComida.mostrarResumen();
-        pedidoComida.calcularTiempoEntrega();
-
-        System.out.println("\n..::Pedido Express::..");
-        pedidoExpress.mostrarResumen();
-        pedidoExpress.calcularTiempoEntrega();
-
-        LO DE LA SEMANA ANTERIOR HA SIDO OMITIDO PARA HACER LO MISMO PERO A TRAVES DE LAS INTERFACES Y EL CONTROLADOR
-        DE ENVIOS
-        */
-
-        //Ejemplo de uso de interface Despachable
-        System.out.println("\nDespacho de pedidos\n");
-        controlador1.agregarPedido(pedidoEncomienda);
-        controlador1.agregarPedido(pedidoExpress);
-        controlador1.agregarPedido(pedidoComida);
-
-        controlador1.despachar();
+        //ControladorDeEnvios controlador1 = new ControladorDeEnvios(); //Añadido en tarea semana 3
 
 
         //Ejemplo básico de cancelar un pedido con la interface Cancelable
@@ -83,26 +32,14 @@ public class Main {
         //controlador1.verHistorial();
 
         //Semana 4
+        /*
         System.out.println(" ");
         System.out.println(" ");
         System.out.println(" ");
         System.out.println("\n SEMANA 4 ");
-        ExecutorService executor = Executors.newFixedThreadPool(3);
+        */
 
-        Pedido pedidoEncomienda1 = new PedidoEncomienda(1111, "Pajaritos 2132, maipu",
-                "Entrega encomienda", "Ropa", 30, 30, 40, 4.5);
-        Pedido pedidoComida1 = new PedidoComida(2222, "Los arboles 6544, pudahuel",
-                "Entra de comida", "Hamburguesa", true, 30);
-        Pedido pedidoExpress1 = new PedidoExpress(3333, "Los perros 857485, santiago",
-                "Entrega express", "tomates", "Supermercado Lider", 6);
-        Pedido pedidoEncomienda2 = new PedidoEncomienda(4444, "Pajaritos 2132, maipu",
-                "Entrega encomienda", "Ropa", 30, 30, 40, 4.5);
-        Pedido pedidoComida2 = new PedidoComida(5555, "Los arboles 6544, pudahuel",
-                "Entra de comida", "Hamburguesa", true, 30);
-        Pedido pedidoExpress2 = new PedidoExpress(6666, "Los perros 857485, santiago",
-                "Entrega express", "tomates", "Supermercado Lider", 6);
-
-
+        /*
         ArrayList<Pedido> listaRepartidor1 = new ArrayList<>();
         listaRepartidor1.add(pedidoEncomienda1);
         listaRepartidor1.add(pedidoEncomienda2);
@@ -132,5 +69,42 @@ public class Main {
             executor.shutdownNow();
             Thread.currentThread().interrupt();
         }
+         */
+
+        //FALTA ACTUALIZAR SUBCLASES DE PEDIDO, Y EJECUTAR PASO 5 DE LA TAREA
+
+        //SEMANA 5
+        System.out.println("::..SEMANA 5..::");
+
+        ZonaDeCarga zonaDeCarga = new ZonaDeCarga();
+
+        Pedido pedido1 = new PedidoExpress(1111, "Los pajarito 123");
+        Pedido pedido2 = new PedidoComida(2222, "Los perros 123");
+        Pedido pedido3 = new PedidoEncomienda(3333,"Los arboles 123");
+        Pedido pedido4 = new PedidoExpress(4444,"Los animales 123");
+        Pedido pedido5 = new PedidoComida(5555,"Las montañas 123");
+        Pedido pedido6 = new PedidoEncomienda(6666, "Las murallas 123");
+
+        Repartidor repartidor1 = new Repartidor("Juanito", zonaDeCarga);
+        Repartidor repartidor2 = new Repartidor("Pedrito", zonaDeCarga);
+        Repartidor repartidor3 = new Repartidor("Fulanito", zonaDeCarga);
+
+        zonaDeCarga.agregarPedido(pedido1);
+        zonaDeCarga.agregarPedido(pedido2);
+        zonaDeCarga.agregarPedido(pedido3);
+        zonaDeCarga.agregarPedido(pedido4);
+        zonaDeCarga.agregarPedido(pedido5);
+        zonaDeCarga.agregarPedido(pedido6);
+
+        Thread hilo1 = new Thread(repartidor1);
+        Thread hilo2 = new Thread(repartidor2);
+        Thread hilo3 = new Thread(repartidor3);
+
+        hilo1.start();
+        hilo2.start();
+        hilo3.start();
+
+
+
     }
 }

@@ -20,7 +20,6 @@ public class ControladorDeEnvios implements Despachable, Cancelable, Rastreable 
     public void despachar() {
         for (Pedido pedidos : listaPedidos){
             System.out.println("Despacho de pedido " + pedidos.getIdPedido());
-            pedidos.calcularTiempoEntrega();
             historialPedidos.add(pedidos);
         }
     }
@@ -40,7 +39,7 @@ public class ControladorDeEnvios implements Despachable, Cancelable, Rastreable 
     public void verHistorial() {
         System.out.println("Historial de pedidos completados:");
         for (Pedido pedidos : listaPedidos){
-            System.out.println(getClass().getSimpleName() + " Nro " + pedidos.getIdPedido() + " entregado por: " + pedidos.getNombreRepartidor());
+            System.out.println(getClass().getSimpleName() + " Nro " + pedidos.getIdPedido());
         }
 
     }

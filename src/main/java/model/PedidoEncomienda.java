@@ -1,5 +1,7 @@
 package model;
 
+import interfaces.EstadoPedido;
+
 public class PedidoEncomienda extends Pedido{
     private String encomienda;
     private int alturaCentimetros;
@@ -8,12 +10,12 @@ public class PedidoEncomienda extends Pedido{
 
     public PedidoEncomienda(){
     }
-    public PedidoEncomienda(int idPedido, String direccionEntrega, String tipoDePedido, String encomienda, int alturaCentimetros, int anchoCentimetros, int largoCentimetros, double distanciaKm) {
-        super(idPedido, direccionEntrega, tipoDePedido, distanciaKm);
-        this.encomienda = encomienda;
-        this.alturaCentimetros = alturaCentimetros;
-        this.anchoCentimetros = anchoCentimetros;
-        this.largoCentimetros = largoCentimetros;
+    public PedidoEncomienda(int idPedido, String direccionEntrega) {
+        super(idPedido, direccionEntrega);
+        //this.encomienda = encomienda;
+        //this.alturaCentimetros = alturaCentimetros;
+        //this.anchoCentimetros = anchoCentimetros;
+        //this.largoCentimetros = largoCentimetros;
     }
     public String getEncomienda() {
         return encomienda;
@@ -45,7 +47,7 @@ public class PedidoEncomienda extends Pedido{
         System.out.println("La encomienda " + encomienda + " con ID " + getIdPedido() + " ha sido asignado exitosamente");
     }
 
-    //Sobrecarga del método
+    /*
     public void asignarRepartidor(String nombreRepartidor){
         setNombreRepartidor(nombreRepartidor);
         System.out.println("La encomienda " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor);
@@ -72,10 +74,10 @@ public class PedidoEncomienda extends Pedido{
             System.out.println("El tiempo de entrega del pedido es de: " + tiempoFinal + " minutos.");
         }
     }
-
+    */
     @Override
     public String toString(){
-        return "ID Pedido: " + getIdPedido() + " | Direccion de entrega: " + getDireccionEntrega() + " | Tipo de pedido: " + getTipoDePedido()
+        return "ID Pedido: " + getIdPedido() + " | Direccion de entrega: " + getDireccionEntrega() + " | Tipo de pedido: "
                 + " | Encomienda: " + encomienda + " | Altura: " + alturaCentimetros + " cm | Ancho: " + anchoCentimetros
                 + " cm | Largo: " + largoCentimetros + " cm.";
     }

@@ -1,15 +1,17 @@
 package model;
 
+import interfaces.EstadoPedido;
+
 public class PedidoComida extends Pedido{
     private String tipoDePedido;
     private boolean incluyeBebestible;
 
     public PedidoComida(String hamburguesa, boolean b){
     }
-    public PedidoComida(int idPedido, String direccionEntrega, String tipoDePedido, String comidaPedida, boolean incluyeBebestible, double distanciaKm){
-        super(idPedido, direccionEntrega, comidaPedida, distanciaKm);
-        this.tipoDePedido = comidaPedida;
-        this.incluyeBebestible = incluyeBebestible;
+    public PedidoComida(int idPedido, String direccionEntrega){
+        super(idPedido, direccionEntrega);
+        //this.tipoDePedido = comidaPedida;
+        //this.incluyeBebestible = incluyeBebestible;
     }
     public String getComidaPedida() {
         return tipoDePedido;
@@ -28,6 +30,7 @@ public class PedidoComida extends Pedido{
     public void asignarRepartidor(){
         System.out.println("El pedido de " + tipoDePedido + " con ID " + getIdPedido() + " ha sido asignado exitosamente");
     }
+    /*
     //Sobrecarga del método
     public void asignarRepartidor(String nombreRepartidor){
         setNombreRepartidor(nombreRepartidor);
@@ -52,10 +55,10 @@ public class PedidoComida extends Pedido{
             System.out.println("El tiempo de entrega del pedido es de: " + tiempoEntrega + " minutos.");
         }
     }
-
+    */
     @Override
     public String toString(){
         return "ID Pedido: " + getIdPedido() + " | Direccion de entrega: " + getDireccionEntrega() + " | Tipo de pedido: "
-                + getTipoDePedido() + " | Comida pedida: " + tipoDePedido + " | Incluye bebestible: " + incluyeBebestible;
+                + " | Comida pedida: " + tipoDePedido + " | Incluye bebestible: " + incluyeBebestible;
     }
 }

@@ -1,19 +1,19 @@
 package model;
 
-public abstract class Pedido {
+import interfaces.EstadoPedido;
+
+public abstract class Pedido{
     private int idPedido;
     private String direccionEntrega;
-    private String tipoDePedido;
-    private double distanciaKm;
-    private String nombreRepartidor;
+    private volatile EstadoPedido estadoPedido;
 
     public Pedido(){
     }
-    public Pedido(int idPedido, String direccionEntrega, String tipoDePedido, double distanciaKm){
+    public Pedido(int idPedido, String direccionEntrega){
         this.idPedido = idPedido;
         this.direccionEntrega = direccionEntrega;
-        this.tipoDePedido = tipoDePedido;
-        this.distanciaKm = distanciaKm;
+        this.estadoPedido = EstadoPedido.PENDIENTE;
+
     }
     public int getIdPedido(){
         return idPedido;
@@ -27,33 +27,26 @@ public abstract class Pedido {
     public void setDireccionEntrega(String direccionEntrega){
         this.direccionEntrega = direccionEntrega;
     }
-    public String getTipoDePedido(){
-        return tipoDePedido;
+    public EstadoPedido getEstadoPedido() {
+        return estadoPedido;
     }
-    public void setTipoDePedido(String tipoDePedido){
-        this.tipoDePedido = tipoDePedido;
+    public void setEstadoPedido(EstadoPedido estadoPedido) {
+        this.estadoPedido = estadoPedido;
     }
-    public double getDistanciaKm(){
-        return distanciaKm;
-    }
-    public void setDistanciaKm(double distanciaKm){
-        this.distanciaKm = distanciaKm;
-    }
-    public String getNombreRepartidor() {
-        return nombreRepartidor;
-    }
-    public void setNombreRepartidor(String nombreRepartidor) {
-        this.nombreRepartidor = nombreRepartidor;
-    }
+
     public void asignarRepartidor(){
         System.out.println("Se ha asignado al repartidor para el pedido " +idPedido);
     }
+
     public void mostrarResumen(){
     }
-    public abstract void calcularTiempoEntrega();
 
     @Override
     public String toString(){
-        return "ID Pedido: " + idPedido + " | Direccion de entrega: " + direccionEntrega + " | Tipo de pedido: " + tipoDePedido;
+        return "ID Pedido: " + idPedido + " | Direccion de entrega: " + direccionEntrega;
+    }
+
+    public void setEstado(String estadoNuevo){
+
     }
 }
