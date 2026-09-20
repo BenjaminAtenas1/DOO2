@@ -23,7 +23,6 @@ public class ControladorDeEnvios implements Despachable, Cancelable, Rastreable 
             historialPedidos.add(pedidos);
         }
     }
-
     @Override
     public void cancelar(int idPedido) {
         boolean eliminado = listaPedidos.removeIf(pedido -> pedido.getIdPedido() == idPedido);
@@ -34,7 +33,6 @@ public class ControladorDeEnvios implements Despachable, Cancelable, Rastreable 
             System.out.println("Pedido no encontrado");
         }
     }
-
     @Override
     public void verHistorial() {
         System.out.println("Historial de pedidos completados:");

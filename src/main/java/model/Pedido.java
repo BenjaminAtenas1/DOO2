@@ -1,5 +1,4 @@
 package model;
-
 import interfaces.EstadoPedido;
 
 public abstract class Pedido{
@@ -13,7 +12,6 @@ public abstract class Pedido{
         this.idPedido = idPedido;
         this.direccionEntrega = direccionEntrega;
         this.estadoPedido = EstadoPedido.PENDIENTE;
-
     }
     public int getIdPedido(){
         return idPedido;

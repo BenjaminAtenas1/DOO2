@@ -12,10 +12,7 @@ public class PedidoEncomienda extends Pedido{
     }
     public PedidoEncomienda(int idPedido, String direccionEntrega) {
         super(idPedido, direccionEntrega);
-        //this.encomienda = encomienda;
-        //this.alturaCentimetros = alturaCentimetros;
-        //this.anchoCentimetros = anchoCentimetros;
-        //this.largoCentimetros = largoCentimetros;
+
     }
     public String getEncomienda() {
         return encomienda;
@@ -47,34 +44,6 @@ public class PedidoEncomienda extends Pedido{
         System.out.println("La encomienda " + encomienda + " con ID " + getIdPedido() + " ha sido asignado exitosamente");
     }
 
-    /*
-    public void asignarRepartidor(String nombreRepartidor){
-        setNombreRepartidor(nombreRepartidor);
-        System.out.println("La encomienda " + getIdPedido() + " ha sido asignado al repartidor " + nombreRepartidor);
-    }
-
-    @Override
-    public void mostrarResumen(){
-        System.out.println("ID Pedido: " + getIdPedido() + " | Direccion de entrega: " + getDireccionEntrega() + " | Tipo de pedido: " + getTipoDePedido()
-                + " | Encomienda: " + encomienda + " | Altura: " + alturaCentimetros + " cm | Ancho: " + anchoCentimetros
-                + " cm | Largo: " + largoCentimetros + " cm | Distancia: " + getDistanciaKm() + " KM.");
-    }
-
-    @Override
-    public void calcularTiempoEntrega(){
-        double tiempoEntrega = 20 + (1.5 * getDistanciaKm());
-        int tiempoFinal = (int) Math.round(tiempoEntrega);
-
-        if (tiempoEntrega > 60){
-            int horas = 1;
-            tiempoFinal = tiempoFinal - 60;
-
-            System.out.println("El tiempo de entrega del pedido es de: " + horas + " hora y " + tiempoFinal + " minutos.");
-        }else{
-            System.out.println("El tiempo de entrega del pedido es de: " + tiempoFinal + " minutos.");
-        }
-    }
-    */
     @Override
     public String toString(){
         return "ID Pedido: " + getIdPedido() + " | Direccion de entrega: " + getDireccionEntrega() + " | Tipo de pedido: "
