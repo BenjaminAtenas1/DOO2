@@ -11,30 +11,28 @@ import javax.swing.JOptionPane;
 
 public class EntregaDAO {
     public void guardar(Entrega entrega) {
-        String consultaSQL = "INSERT INTO entrega (id_pedido, id_repartidor, fecha, hora) VALUES (?, ?, ?, ?)";
+        String consultaSQL = "INSERT INTO entrega (id_pedido, id_repartidor, fecha, hora) VALUES (?, ?, CURDATE(), CURTIME())";
 
         try (Connection conexion = ConexionBD.conexionBD();
              PreparedStatement statement = conexion.prepareStatement(consultaSQL, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setInt(1, entrega.getIdPedido());
             statement.setInt(2, entrega.getIdRepartidor());
-            statement.setDate(3, entrega.getFecha());
-            statement.setTime(4, entrega.getHora());
 
-            int filasAfectadas = statement.executeUpdate();
+            int filas = statement.executeUpdate();
 
-            if (filasAfectadas > 0) {
-                try (ResultSet rs = statement.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        entrega.setIdEntrega(rs.getInt(1));
+            if (filas > 0) {
+                try (ResultSet resultado = statement.getGeneratedKeys()) {
+                    if (resultado.next()) {
+                        entrega.setIdEntrega(resultado.getInt(1));
                     }
                 }
-                System.out.println("Entrega registrada exitosamente en la base de datos.");
+                System.out.println("Entrega registrada exitosamente.");
             }
 
         } catch (SQLException e) {
             System.err.println("Error al registrar la entrega: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error al registrar la entrega en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al registrar la entrega", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

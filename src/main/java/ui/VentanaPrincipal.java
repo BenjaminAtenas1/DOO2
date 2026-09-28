@@ -77,15 +77,15 @@ public class VentanaPrincipal extends JFrame{
         String nombreRepartidor = JOptionPane.showInputDialog(this, "Ingrese el nombre del nuevo repartidor:", "Registrar Repartidor", JOptionPane.QUESTION_MESSAGE);
 
         if (nombreRepartidor != null && !nombreRepartidor.trim().isEmpty()) {
-            String sql = "INSERT INTO repartidor (nombre) VALUES (?)";
+            String consultaSQL = "INSERT INTO repartidor (nombre) VALUES (?)";
 
             try (Connection conexion = ConexionBD.conexionBD();
-                 PreparedStatement statement = conexion.prepareStatement(sql)) {
+                 PreparedStatement statement = conexion.prepareStatement(consultaSQL)) {
 
                 statement.setString(1, nombreRepartidor.trim());
                 statement.executeUpdate();
 
-                JOptionPane.showMessageDialog(this, "Repartidor guardado exitosamente en la base de datos.");
+                JOptionPane.showMessageDialog(this, "Repartidor guardado exitosamente.");
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(this, "Error al guardar el repartidor: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

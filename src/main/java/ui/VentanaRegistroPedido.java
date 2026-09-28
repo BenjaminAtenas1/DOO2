@@ -59,7 +59,6 @@ public class VentanaRegistroPedido extends JFrame {
                 JOptionPane.showMessageDialog(this, "Debe ingresar una dirección válida.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-
             Pedido pedido = null;
             switch (tipo){
                 case "Express" -> pedido = new PedidoExpress(0, direccion);
@@ -71,7 +70,6 @@ public class VentanaRegistroPedido extends JFrame {
             dispose();
 
             //zonaDeCarga.agregarPedido(pedido);
-
             //JOptionPane.showMessageDialog(this,"Pedido listo para reparto");
             //dispose();
 

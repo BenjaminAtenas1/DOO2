@@ -20,19 +20,14 @@ public class RepartidorDAO {
              ResultSet resultado = statement.executeQuery()) {
 
             while (resultado.next()) {
-                // Leemos el nombre de la columna 'nombre' de la BD
                 String nombre = resultado.getString("nombre");
-
-                // Instanciamos el objeto Repartidor y le asignamos el nombre
                 Repartidor repartidor = new Repartidor();
                 repartidor.setNombreRepartidor(nombre);
-
-                // Agregamos el objeto a la lista
                 listaRepartidores.add(repartidor);
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al listar los repartidores: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
 
         return listaRepartidores;
