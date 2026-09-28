@@ -1,5 +1,6 @@
 package ui;
 
+import controlador.PedidoDAO;
 import gestores.ZonaDeCarga;
 import interfaces.EstadoPedido;
 import model.*;
@@ -13,9 +14,11 @@ public class VentanaListaPedidos extends JFrame {
     private JTable tabla;
     private DefaultTableModel modeloTabla;
     private ZonaDeCarga zonaDeCarga;
+    private PedidoDAO pedidoDAO;
 
-    public VentanaListaPedidos(ZonaDeCarga zonaDeCarga) {
-        this.zonaDeCarga = zonaDeCarga;
+    public VentanaListaPedidos() {
+        //this.zonaDeCarga = zonaDeCarga;
+        this.pedidoDAO = new PedidoDAO();
 
         setTitle("Listado y Gestión de Envíos");
         setSize(600, 350);
@@ -28,20 +31,22 @@ public class VentanaListaPedidos extends JFrame {
                 return false;
             }
         };
+
         tabla = new JTable(modeloTabla);
         tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         add(new JScrollPane(tabla), BorderLayout.CENTER);
+
         JPanel panelBotones = new JPanel(new FlowLayout());
 
-        JButton btnIniciarEntrega = new JButton("Asignar repartidor / Iniciar entrega");
+        //JButton btnIniciarEntrega = new JButton("Asignar repartidor / Iniciar entrega");
         JButton btnRefrescar = new JButton("Refrescar Lista");
 
-        panelBotones.add(btnIniciarEntrega);
+        //panelBotones.add(btnIniciarEntrega);
         panelBotones.add(btnRefrescar);
         add(panelBotones, BorderLayout.SOUTH);
 
-        btnIniciarEntrega.addActionListener(e -> iniciarEntregaPedidoSeleccionado());
+        //btnIniciarEntrega.addActionListener(e -> iniciarEntregaPedidoSeleccionado());
         btnRefrescar.addActionListener(e -> refrescarTabla());
         refrescarTabla();
     }
@@ -76,6 +81,9 @@ public class VentanaListaPedidos extends JFrame {
     }
 
     public void refrescarTabla() {
+        pedidoDAO.cargarPedidos(modeloTabla);
+
+        /*
         modeloTabla.setRowCount(0);
         List<Pedido> historial = zonaDeCarga.getHistorialPedidos();
 
@@ -95,6 +103,6 @@ public class VentanaListaPedidos extends JFrame {
                     nombrePedido,
                     p.getEstadoPedido()
             });
-        }
+        }*/
     }
 }

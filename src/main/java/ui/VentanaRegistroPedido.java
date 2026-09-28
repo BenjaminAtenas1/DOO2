@@ -2,6 +2,7 @@ package ui;
 
 import gestores.ZonaDeCarga;
 import model.*;
+import controlador.PedidoDAO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,18 +12,20 @@ public class VentanaRegistroPedido extends JFrame {
     private JTextField campoDireccion;
     private JComboBox<String> comboTipoPedido;
     private ZonaDeCarga zonaDeCarga;
+    private PedidoDAO pedidoDAO;
 
-    public VentanaRegistroPedido(ZonaDeCarga zonaDeCarga){
-        this.zonaDeCarga = zonaDeCarga;
+    public VentanaRegistroPedido(){
+        //this.zonaDeCarga = zonaDeCarga;
+        this.pedidoDAO = new PedidoDAO();
 
         setTitle("Registro nuevo pedido.");
         setSize(350,250);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(4,2,5,5));
+        setLayout(new GridLayout(3, 2, 5, 5));
 
-        add(new JLabel("ID Pedido:"));
-        campoId = new JTextField();
-        add(campoId);
+        //add(new JLabel("ID Pedido:"));
+        //campoId = new JTextField();
+        //add(campoId);
 
         add(new JLabel("Direccion:"));
         campoDireccion = new JTextField();
@@ -34,30 +37,44 @@ public class VentanaRegistroPedido extends JFrame {
 
         JButton botonGuardar = new JButton("Guardar");
         botonGuardar.addActionListener(e -> guardarPedido());
+        add(new JLabel());
         add(botonGuardar);
     }
 
     public void guardarPedido(){
         try{
-            int id = Integer.parseInt(campoId.getText().trim());
-            String direccion = campoDireccion.getText().trim();
-            String tipo = (String)comboTipoPedido.getSelectedItem();
+            //int id = Integer.parseInt(campoId.getText().trim());
+            //String direccion = campoDireccion.getText().trim();
+            //String tipo = (String)comboTipoPedido.getSelectedItem();
 
-            if (campoDireccion.getText().trim().isEmpty() || campoId.getText().trim().isEmpty()){
-                JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos","Error",JOptionPane.INFORMATION_MESSAGE);
+            //if (campoDireccion.getText().trim().isEmpty() || campoId.getText().trim().isEmpty()){
+                //JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos","Error",JOptionPane.INFORMATION_MESSAGE);
+                //return;
+            //}
+
+            String direccion = campoDireccion.getText().trim();
+            String tipo = (String) comboTipoPedido.getSelectedItem();
+
+            if (direccion.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar una dirección válida.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             Pedido pedido = null;
             switch (tipo){
-                case "Express" -> pedido = new PedidoExpress(id, direccion);
-                case "Comida" -> pedido = new PedidoComida(id, direccion);
-                case "Encomienda" -> pedido = new PedidoEncomienda(id,direccion);
+                case "Express" -> pedido = new PedidoExpress(0, direccion);
+                case "Comida" -> pedido = new PedidoComida(0, direccion);
+                case "Encomienda" -> pedido = new PedidoEncomienda(0,direccion);
             }
-            zonaDeCarga.agregarPedido(pedido);
 
-            JOptionPane.showMessageDialog(this,"Pedido listo para reparto");
+            pedidoDAO.guardar(pedido);
             dispose();
+
+            //zonaDeCarga.agregarPedido(pedido);
+
+            //JOptionPane.showMessageDialog(this,"Pedido listo para reparto");
+            //dispose();
+
         }catch (NumberFormatException e){
             JOptionPane.showMessageDialog(this,"Verifique la información ingresada","Error", JOptionPane.ERROR_MESSAGE);
         }
